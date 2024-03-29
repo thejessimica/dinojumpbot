@@ -22,7 +22,8 @@ def check_obstacle(image_paths, region, confidence):
     for image_path in image_paths:
         try:
             obstacle_location = pyautogui.locateOnScreen(image_path, grayscale=True, confidence=confidence, region=region)
-            if obstacle_location.left <= 300 >= 230:
+            print(obstacle_location.left)
+            if obstacle_location.left <= 280:
                 body.send_keys(Keys.SPACE)
                 print(f"Attempted jump. Obstacle location: {obstacle_location.left}")
                 return True
@@ -34,7 +35,7 @@ def check_obstacle(image_paths, region, confidence):
 while game_on:
     # Daytime cacti
     day_cactus_images = ['images/cactus_day.png', 'images/cactus_day_left_up.png', 'images/cactus_day_right_up.png']
-    day_cactus_region = (200, 620, 110, 280)
+    day_cactus_region = (200, 620, 200, 150)
     day_cactus_confidence = 0.2
     if check_obstacle(day_cactus_images, day_cactus_region, day_cactus_confidence):
         continue
